@@ -1,30 +1,78 @@
-# Digital Literacy Project
+# Pharmacy Sales Predictor
+### Intelligence-Driven OTC Inventory Forecasting
 
-**Name:** Kushagra Nigam
-**Registration Number** 25BAI11055
-**Course:** CSE0001 – Digital Literacy  
-**University:** VIT Bhopal  
+**Pharmacy Sales Predictor** is a terminal-based machine learning solution designed to forecast demand for Over-the-Counter (OTC) medications. By analyzing historical sales patterns across different regions and dates, this tool helps pharmacies optimize their supply chain, minimizing both stockouts and the waste of expired inventory.
 
-##  Project Overview
-This project is part of the Digital Literacy course. It covers essential skills required to navigate the digital world safely and professionally.
+---
 
-##  Tasks
+## Project Overview
+The primary challenge in retail pharmacy is balancing stock levels. Overstocking leads to expired chemical waste, while understocking impacts patient care. This project implements a classification pipeline that identifies high-demand products using ensemble learning techniques.
 
-### Task 1 – Infographic
-Created using Canva explaining digital literacy concepts.
+### Model Evaluation and Performance
+We conducted a comparative analysis between two different ensemble architectures to establish the most reliable forecasting model:
 
-### Task 2 – Digital Portfolio
-Profiles created on GitHub, LinkedIn, and Kaggle.
+| Model | Architecture | Role | Accuracy |
+| :--- | :--- | :--- | :--- |
+| **Random Forest (m1)** | Parallel Ensemble | Baseline | **~21%** |
+| **Gradient Boosting (m2)** | Sequential Ensemble | **Final Model** | **~24%** |
 
-### Task 3 – Platforms
-Completed coding challenge in codechef and created a Google Form quiz.
+*Note: The Gradient Boosting model was selected for the final implementation. Its sequential learning approach allowed for better correction of residual errors compared to the baseline, making it more effective for the specific demand patterns in the OTC dataset.*
 
-## 🔗 Google Form Link
-(https://docs.google.com/forms/d/e/1FAIpQLSfNNT-wJ7A3XrIOKHJKBZuAxxgfZQh5uiPQlQy-s021wD2Lhw/viewform?usp=publish-editor)
+---
 
-### Task 4 – Email Etiquette
-Drafted professional emails and social media checklist on digital literacy.
+## Technical Setup
 
-### Task 5 – Cybercrime Awareness
-Case study on UPI fraud and prevention checklist.
+### Prerequisites
+* Python: 3.8 
+* Package Manager: pip
 
+### Installation Steps
+1. Clone the repository to your local machine.
+2. Navigate into the project directory: pharmacy-sales-predictor.
+3. Install the required libraries using the requirements.txt file.
+   (Core libraries: Scikit-learn, Pandas, NumPy, Matplotlib, Seaborn, and Joblib).
+
+---
+
+## Execution Guide
+
+### 1. Model Training
+To train the models and generate performance metrics such as Accuracy, MAE, and Confusion Matrices:
+
+* Run the Random Forest Baseline script located in the scripts folder.
+* Run the Gradient Boosting (Final) script located in the scripts folder.
+
+### 2. Demand Prediction (CLI)
+Use the command-line interface to predict high-demand medication by providing the country name and the target date as arguments to the m2 script.
+
+Example Result: 
+Predicted high-demand product: Paracetamol
+
+---
+
+## Data and Pipeline
+The system processes data from the pharmacy_otc_sales_data.csv file, focusing on features such as Date, Product, Amount, and Country.
+
+### Workflow Logic
+1. Feature Engineering: Decomposing timestamps into Month and Day-of-Week components.
+2. Data Transformation: Implementing Label Encoding for categorical variables.
+3. Model Training: Comparative evaluation of ensemble methods.
+4. Serialization: Saving trained models and encoders as .pkl files for seamless inference.
+
+---
+
+## Repository Structure
+* data/ - Historical OTC sales data
+* models/ - Saved .pkl model files
+* scripts/ - Machine Learning and CLI scripts
+* requirements.txt - List of project dependencies
+* README.md - Project documentation
+
+---
+
+## Academic Context
+* Course: CSA2001 — Fundamentals in AI and ML
+* Author: Kushagra Nigam
+* Registration No: 25BAI11055
+* Program: B.Tech (CSE - AI & ML)
+* Date: March 2026
