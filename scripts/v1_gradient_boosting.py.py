@@ -5,7 +5,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import accuracy_score, mean_absolute_error
 
-df = pd.read_csv('E:/Vityarthi project 2nd sem/archive/pharmacy_otc_sales_data.csv')
+df = pd.read_csv('pharmacy_otc_sales_data.csv')
 
 df['Date'] = pd.to_datetime(df['Date'])
 df['Month'] = df['Date'].dt.month
@@ -39,3 +39,19 @@ joblib.dump(model, 'medicine_model.pkl')
 joblib.dump(le_country, 'country_encoder.pkl')
 joblib.dump(le_product, 'product_encoder.pkl')
 print("All files saved: medicine_model.pkl, country_encoder.pkl, product_encoder.pkl")
+
+#  TERMINAL CONFUSION MATRIX 
+print("\n" + "="*30)
+print("TEXT-BASED CONFUSION MATRIX")
+print("="*30)
+
+matrix_df = pd.crosstab(
+    le_product.inverse_transform(y_test), 
+    le_product.inverse_transform(y_pred), 
+    rownames=['Actual'], 
+    colnames=['Predicted'],
+    margins=True 
+)
+
+print(matrix_df)
+print("="*30)
